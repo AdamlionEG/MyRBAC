@@ -13,6 +13,7 @@ import android.widget.TextView;
 
 import app.rbac.adamlion.myrbac.R;
 import app.rbac.adamlion.myrbac.manager.MyAlert;
+import app.rbac.adamlion.myrbac.manager.PostUserToServer;
 
 /**
  * Created by User on 6/8/2560.
@@ -64,12 +65,38 @@ public class SignUpFragment extends Fragment {
                 } else {
                     //No Space
                     Log.d("6AugV1", "No Space");
+                    uploadValue();
 
                 }
 
             }
         });
 
+    }
+
+    private void uploadValue() {
+        try {
+
+            PostUserToServer postUserToServer = new PostUserToServer(getActivity());
+            postUserToServer.execute(nameString,
+                    userString,
+                    passwordString,
+                    "http://androidthai.in.th/rbac/addDataMaster123.php");
+            String strResult = postUserToServer.get();
+            Log.d("6AugV1", "Result ==>" + strResult);
+
+            if (Boolean.parseBoolean(strResult)) {
+                getActivity().getSupportFragmentManager()
+                        .beginTransaction().replace(R.id.mainContainer, new MainFragment())
+                        .commit();
+
+
+            } else {
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     private void backController() {

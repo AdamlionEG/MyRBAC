@@ -5,7 +5,13 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="app.rbac.adamlion.myrbac.MainActivity">
-
+    <!--background-->
+    <ImageView
+        android:scaleType="centerCrop"
+        android:src="@drawable/lion"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+    <!--Content-->
     <FrameLayout
 
         android:id="@+id/mainContainer"
